@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+         *{
+            padding: 0px;
+            margin:0px;
+        }
+        #form{
+            width: 50%;
+            height: 300px;
+            display: block;
+            margin: auto;
+            margin-bottom: 20px;
+            align-items: center;
+            justify-content: space-around;
+        }
+        h1{
+            width: 50%;
+            margin: auto;
+            margin-bottom: 20px;
+        }
+        #login{
+            display: block;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login</h1>
+    <form id="form">
+        <input id="email" type="text"  placeholder="Enter Your Email ">
+        <input id="mobile" type="number" placeholder="Enter Your Mobile number">
+        <input id="password" type="password" placeholder="Enter your password">
+        <input id="login" type="submit" value="Login">
+    </form>
+</body>
+</html>
+<script>
+    document.querySelector("form").addEventListener("submit",Loginfun);
+    var signupArr=JSON.parse(localStorage.getItem("signup"))|| [];
+    console.log(signupArr)
+    var loginArr=JSON.parse(localStorage.getItem("login"))|| [];
+    function Loginfun(){
+        event.preventDefault();
+        var loginObj={
+            personEmail:form.email.value,
+            personMobile:form.mobile.value,
+            personPassword:form.password.value
+        }
+        loginArr.push(loginObj)
+        if(loginArr.personEmail===null)
+        {
+            alert("Create The Account")
+        }
+        else if(signupArr.personEmail==loginArr.personEmail && 
+                signupArr.personPassword==loginArr.personPassword && 
+                signupArr.personMobile==loginArr.personMobile)
+        {
+            alert("Successfully Login")
+        }
+        else
+        {
+            alert("Enter Right Credentials")
+        }
+        localStorage.setItem("login",JSON.stringify(loginArr))
+
+        
+    }
+</script>
